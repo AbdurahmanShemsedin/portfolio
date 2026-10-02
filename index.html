@@ -111,8 +111,10 @@ footer{padding:36px 0;border-top:1px solid var(--line);color:var(--mut)}
 
 <script>
 /* ===== EDIT THESE ===== */
-const YOUTUBE_ID = "4M2IGzbBkiE";   // the part after v= in your YouTube link, e.g. "dQw4w9WgXcQ"
-const TIKTOK_URL = "https://www.tiktok.com/@dynamo.gaming.machines/video/7435673985947372856";   // full TikTok link, e.g. "https://www.tiktok.com/@yourname/video/7123456789012345678" (open short vm.tiktok.com links in a browser first and copy the full address)
+const YOUTUBE_ID = "";   // the part after v= in your YouTube link, e.g. "dQw4w9WgXcQ"
+const TIKTOK_URL = "https://www.tiktok.com/@dynamo.gaming.machines/video/7435673985947372856";
+// Most reliable: save the same video as an .mp4, put it in a "videos" folder, and set the file name below. It then plays right on your page and TikTok's embed is not used.
+const TIKTOK_FILE = "";   // e.g. "videos/dynamo-gaming-machines.mp4"
 // Put photos in an "images" folder next to this file and list their file names below.
 const PROJECTS = [
  {t:"Dynamo Gaming Machines", s:"Founder, 2019 to present", d:"Commercial arcade and amusement equipment built end to end: control boards, firmware, and metal and wood fabrication.",
@@ -132,8 +134,8 @@ document.getElementById("projects").innerHTML=PROJECTS.map(p=>`<div class="card"
 document.getElementById("awards").innerHTML=gal(AWARD_IMAGES);
 document.getElementById("vid").innerHTML=YOUTUBE_ID?`<iframe src="https://www.youtube.com/embed/${YOUTUBE_ID}" title="Video" allowfullscreen loading="lazy"></iframe>`:`<div>Set YOUTUBE_ID in index.html to show your video here.</div>`;
 const ttId=(TIKTOK_URL.match(/\/video\/(\d+)/)||[])[1];
-document.getElementById("tt").innerHTML=ttId?`<iframe src="https://www.tiktok.com/embed/v2/${ttId}" title="TikTok video" allow="fullscreen" allowfullscreen loading="lazy"></iframe>`:`<div class="ph2">Paste your TikTok video link into TIKTOK_URL in index.html to show it here.</div>`;
-if(ttId){const a=document.getElementById("ttl");a.href=TIKTOK_URL;a.style.display="block"}
+document.getElementById("tt").innerHTML=TIKTOK_FILE?`<video src="${TIKTOK_FILE}" controls playsinline preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000"></video>`:ttId?`<iframe src="https://www.tiktok.com/embed/v2/${ttId}" title="TikTok video" allow="fullscreen" allowfullscreen loading="lazy"></iframe>`:`<div class="ph2">Paste your TikTok video link into TIKTOK_URL in index.html to show it here.</div>`;
+if(TIKTOK_URL){const a=document.getElementById("ttl");a.href=TIKTOK_URL;a.style.display="block"}
 const lb=document.getElementById("lb");
 document.addEventListener("click",e=>{if(e.target.matches(".gal img")){lb.firstElementChild.src=e.target.src;lb.style.display="flex"}else if(lb.contains(e.target)||e.target===lb){lb.style.display="none"}});
 </script>
