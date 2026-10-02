@@ -72,7 +72,40 @@ section{padding:44px 0}h2{font-size:1.5rem;margin:0 0 18px;border-left:4px solid
 @media(max-width:860px){.rwg{grid-template-columns:1fr}.path{grid-template-columns:1fr;gap:22px;margin-left:8px}.path::before{left:9px;right:auto;top:0;bottom:0;width:2px;height:auto}.path li{padding:0 0 0 40px}.path li::before{top:2px}}
 .pv{margin-top:12px;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#000}
 .pv video{display:block;width:100%;aspect-ratio:16/9;object-fit:contain;background:#000}
+.pv iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+.gal:has(>:only-child) img{aspect-ratio:auto;object-fit:contain;max-height:340px;background:#fff;padding:6px}
 .pv span{display:block;padding:7px 12px;font-size:.78rem;font-weight:600;color:var(--mut);background:var(--card)}
+html{scroll-behavior:smooth;scroll-padding-top:74px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.nav{position:sticky;top:0;z-index:50;background:rgba(10,18,36,.86);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav .w{display:flex;align-items:center;justify-content:space-between;height:62px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:700}
+.brand i{font-style:normal;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#2f7be0,#6aa8f0);font-size:.8rem}
+.nl{display:flex;align-items:center;gap:4px}
+.nl a{position:relative;color:#b9c7e0;text-decoration:none;font-weight:600;font-size:.92rem;padding:8px 12px;border-radius:8px;transition:color .15s,background .15s}
+.nl a:hover{color:#fff;background:rgba(255,255,255,.07)}
+.nl a.act{color:#fff}
+.nl a.act::after{content:"";position:absolute;left:12px;right:12px;bottom:1px;height:2px;border-radius:2px;background:#2f7be0}
+.nl .ncv{margin-left:8px;background:#2f7be0;color:#fff;padding:8px 16px}
+.nl .ncv:hover{background:#4a90ea}
+.bg{display:none;background:none;border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:8px;width:40px;height:40px;font-size:1.2rem;cursor:pointer}
+@media(max-width:860px){.bg{display:block}.nl{display:none;position:absolute;left:0;right:0;top:62px;flex-direction:column;align-items:stretch;padding:10px 20px 16px;background:rgba(10,18,36,.97);border-bottom:1px solid rgba(255,255,255,.1)}.nav.open .nl{display:flex}.nl a.act::after{display:none}.nl a.act{background:rgba(47,123,224,.22)}.nl .ncv{margin:6px 0 0;text-align:center}}
+.spot{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:48px;align-items:center;margin:8px 0 40px}
+.sp-img{position:relative;margin:0}
+.sp-img::before{content:"";position:absolute;inset:16px -16px -16px 16px;border:2px solid var(--acc);border-radius:22px;opacity:.5}
+.sp-img img{position:relative;display:block;width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:22px;box-shadow:0 26px 60px rgba(10,20,45,.35);cursor:zoom-in;transition:transform .35s}
+.sp-img:hover img{transform:scale(1.015)}
+.sp-img figcaption{position:absolute;left:18px;bottom:18px;background:linear-gradient(135deg,#ffd166,#f4a63a);color:#2a1d00;font-weight:800;letter-spacing:.08em;font-size:.78rem;padding:8px 14px;border-radius:99px;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+.sp-t h3{font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.15;margin:2px 0 6px}
+.sp-t .big{font-size:1.15rem;font-weight:700;color:var(--acc);margin:0 0 12px}
+.sp-t p{color:var(--mut);margin:0 0 10px}
+.sp-a{display:inline-block;margin-top:4px;font-weight:700;color:var(--acc);text-decoration:none;border-bottom:2px solid transparent;transition:border-color .15s}
+.sp-a:hover{border-color:var(--acc)}
+.awg{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.aw{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--acc);border-radius:14px;padding:16px 18px}
+.aw b{display:block;font-size:1.6rem;line-height:1.1;color:var(--acc);margin-bottom:4px}
+.aw span{color:var(--mut);font-size:.92rem;line-height:1.45;display:block}
+@media(max-width:860px){.spot{grid-template-columns:1fr;gap:34px}.sp-img::before{inset:12px -8px -12px 8px}}
 footer{padding:48px 0 32px;border-top:1px solid var(--line);color:var(--mut)}
 .fgal{grid-template-columns:repeat(5,1fr);gap:10px;margin:0 0 36px}
 .fgal img,.fgal .ph{aspect-ratio:1}
@@ -87,7 +120,15 @@ footer{padding:48px 0 32px;border-top:1px solid var(--line);color:var(--mut)}
 </style>
 </head>
 <body>
-<header><div class="w hero">
+<nav class="nav" id="nav"><div class="w">
+ <a class="brand" href="#top"><i>AS</i><span>Abdurahaman Shemsedin</span></a>
+ <button class="bg" id="bg" aria-label="Menu" aria-expanded="false">&#9776;</button>
+ <div class="nl">
+  <a href="#watch">Watch</a><a href="#story">My Story</a><a href="#work">Projects</a><a href="#honors">Awards</a><a href="#gal">Gallery</a><a href="#contact">Contact</a>
+  <a class="ncv" href="Abdurahaman_Shemsedin_CV.docx" download>Download CV</a>
+ </div>
+</div></nav>
+<header id="top"><div class="w hero">
 <div class="avatar"><img src="images/profile.jpg" alt="Portrait of Abdurahaman Shemsedin" onerror="this.parentNode.textContent='AS'"></div>
 <div class="txt">
 <div class="tag">EMBEDDED SYSTEMS  |  HARDWARE  |  EDGE AI</div>
@@ -98,7 +139,7 @@ footer{padding:48px 0 32px;border-top:1px solid var(--line);color:var(--mut)}
 </div>
 </div></header>
 
-<section><div class="w"><h2>Watch</h2>
+<section id="watch"><div class="w"><h2>Watch</h2>
 <div class="media">
  <div>
   <span class="lbl">YOUTUBE</span>
@@ -114,7 +155,7 @@ footer{padding:48px 0 32px;border-top:1px solid var(--line);color:var(--mut)}
 </div>
 </div></section>
 
-<section class="rw"><div class="w">
+<section class="rw" id="story"><div class="w">
 <div class="rwh"><span class="rec"><i></i>REWIND</span><span class="yr">2019</span></div>
 <h2>Want to see my start? &#128578;</h2>
 <div class="rwg">
@@ -146,14 +187,25 @@ footer{padding:48px 0 32px;border-top:1px solid var(--line);color:var(--mut)}
 <span>FPGA</span><span>PLC</span><span>PIC</span><span>Arduino</span><span>ESP32 / ESP8266</span><span>STM32</span><span>Raspberry Pi</span><span>Jetson Nano</span>
 </div></div></section>
 
-<section><div class="w"><h2>Projects</h2><div class="grid" id="projects"></div></div></section>
+<section id="work"><div class="w"><h2>Projects</h2><div class="grid" id="projects"></div></div></section>
 
-<section><div class="w"><h2>Awards</h2><ul class="tl">
-<li><b>2025</b> Top 10 Finalist, Innovating Education in Africa (African Union); MasterCard Foundation EdTech Fellowship</li>
-<li><b>2023</b> UNICO Best Emerging Startup and Promising Technology</li>
-<li><b>2022</b> TotalEnergies Startupper of the Year</li>
-<li><b>2019</b> Jimma University Institute of Technology Project of the Year; Green Innovation and Agri-Tech Slam winner</li>
-</ul>
+<section id="honors"><div class="w"><h2>Awards</h2>
+<div class="spot">
+ <figure class="sp-img"><img src="images/GIS_Award.jpg" alt="Receiving the Green Innovation and Agri-Tech Slam trophy in 2019" onerror="this.closest('figure').style.display='none'"><figcaption>&#127942; WINNER | 2019</figcaption></figure>
+ <div class="sp-t">
+  <span class="lbl">AWARD SPOTLIGHT</span>
+  <h3>Green Innovation and Agri-Tech Slam</h3>
+  <p class="big">Winner, 2019</p>
+  <p>A proud moment on stage, collecting the trophy and certificate at the 2019 Green Innovation and Agri-Tech Slam (GIAS). The same year, my smart solar-powered autonomous coffee farm tractor was named Project of the Year at Jimma University Institute of Technology.</p>
+  <a class="sp-a" href="#work">See the tractor in action &rarr;</a>
+ </div>
+</div>
+<div class="awg">
+ <div class="aw"><b>2025</b><span>Top 10 Finalist, Innovating Education in Africa (African Union); MasterCard Foundation EdTech Fellowship</span></div>
+ <div class="aw"><b>2023</b><span>UNICO Best Emerging Startup and Promising Technology</span></div>
+ <div class="aw"><b>2022</b><span>TotalEnergies Startupper of the Year</span></div>
+ <div class="aw"><b>2019</b><span>Jimma University Institute of Technology Project of the Year; Green Innovation and Agri-Tech Slam winner</span></div>
+</div>
 <div class="gal" id="awards"></div></div></section>
 
 <section><div class="w"><h2>International exposure</h2><ul class="tl">
@@ -164,8 +216,9 @@ footer{padding:48px 0 32px;border-top:1px solid var(--line);color:var(--mut)}
 </ul></div></section>
 
 <footer><div class="w">
-<h2>Gallery</h2>
+<h2 id="gal">Gallery</h2>
 <div class="gal fgal" id="gallery"></div>
+<span id="contact" style="display:block"></span>
 <div class="soc" id="soc"></div>
 <div class="copy">Abdurahaman Shemsedin  |  Addis Ababa / Jimma, Ethiopia |  +251 917 757677 |  <a href="mailto:abdushems@gmail.com" style="color:var(--acc)">abdushems@gmail.com</a></div>
 </div></footer>
@@ -187,7 +240,7 @@ const PROJECTS = [
   b:["200+ daily app users","20,000+ youth and children trained in STEM and programming"], i:["dynamo-1.jpg","dynamo-2.jpg"]},
  {t:"Solar Autonomous Coffee Farm Tractor", s:"BSc final project, 2019", d:"Smart solar-powered autonomous tractor for coffee farms. Institute Project of the Year and Green Innovation and Agri-Tech Slam winner.", b:[], i:[], v:"videos/Tractor_Dynamo.mp4"},
  {t:"Interpretable Amharic Hadith Classifier", s:"MSc research, 2024", d:"CNN-BiLSTM with SHAP explainability on 16,654 annotated texts and 12 authenticity grades, reaching 89% accuracy. In the final stage of publication in Nature journal.", b:[], i:["diagram.png"]},
- {t:"Technology Transfer Projects", s:"Jimma University, 2016 to 2017", d:"", b:["Amharic and Afan Oromo LED-matrix smart teaching device with speech recognition for kindergarten","Braille keyboard for Amharic with a 300+ word voice navigation dataset","Low-cost digital advertising board with Amharic fonts and animations"], i:["tt-1.jpg","tt-2.jpg"]},
+ {t:"Technology Transfer Projects", s:"Jimma University, 2016 to 2017", d:"", b:["Amharic and Afan Oromo LED-matrix smart teaching device with speech recognition for kindergarten","Braille keyboard for Amharic with a 300+ word voice navigation dataset","Low-cost digital advertising board with Amharic fonts and animations"], i:[], y:"_WXk4XAzKw4"},
  {t:"Guided 80+ Student Hardware Projects", s:"Dynamo consultancy", d:"Award-winning builds include:", b:["Digital spirometer to Ethiopian standards","Dialysis machine","Computer-vision pesticide robot","Amharic voice-synthesis book reader for the blind","Amharic sign-language gloves","Urine-based cervical cancer detector","Eye-tracking driver sleep detector","VR simulator lab, automated wheelchair, driving simulator"], i:["consult-1.jpg","consult-2.jpg"]}
 ];
 const AWARD_IMAGES = ["award-1.jpg","award-2.jpg","award-3.png"];
@@ -197,7 +250,7 @@ const GALLERY = Array.from({length:10},(_,i)=>`gallery-${i+1}.jpg`);
 const SOCIAL = {facebook:"", youtube:"", tiktok:"https://www.tiktok.com/@dynamo.gaming.machines", linkedin:""};
 /* ====================== */
 const gal=(arr)=>arr.map(f=>`<img src="images/${f}" alt="" loading="lazy" onerror="this.outerHTML='<div class=ph>Add images/${f}</div>'">`).join("");
-document.getElementById("projects").innerHTML=PROJECTS.map(p=>`<div class="card"><h3>${p.t}</h3><small>${p.s}</small>${p.d?`<p>${p.d}</p>`:""}${p.b.length?`<ul>${p.b.map(x=>`<li>${x}</li>`).join("")}</ul>`:""}${p.i.length?`<div class="gal">${gal(p.i)}</div>`:""}${p.v?`<div class="pv"><video src="${p.v}#t=0.1" controls playsinline preload="metadata"></video><span>Autonomous tractor in action</span></div>`:""}</div>`).join("");
+document.getElementById("projects").innerHTML=PROJECTS.map(p=>`<div class="card"><h3>${p.t}</h3><small>${p.s}</small>${p.d?`<p>${p.d}</p>`:""}${p.b.length?`<ul>${p.b.map(x=>`<li>${x}</li>`).join("")}</ul>`:""}${p.i.length?`<div class="gal">${gal(p.i)}</div>`:""}${p.v?`<div class="pv"><video src="${p.v}#t=0.1" controls playsinline preload="metadata"></video><span>Autonomous tractor in action</span></div>`:""}${p.y?`<div class="pv"><iframe src="https://www.youtube.com/embed/${p.y}" title="${p.t}" loading="lazy" allowfullscreen></iframe><span>Project video</span></div>`:""}</div>`).join("");
 document.getElementById("awards").innerHTML=gal(AWARD_IMAGES);
 document.getElementById("vid").innerHTML=YOUTUBE_ID?`<iframe src="https://www.youtube.com/embed/${YOUTUBE_ID}" title="Video" allowfullscreen loading="lazy"></iframe>`:`<div>Set YOUTUBE_ID in index.html to show your video here.</div>`;
 const ttId=(TIKTOK_URL.match(/\/video\/(\d+)/)||[])[1];
@@ -214,8 +267,14 @@ const tv=document.getElementById("first");
 tv.style.backgroundImage=`url(https://i.ytimg.com/vi/${FIRST_VIDEO_ID}/maxresdefault.jpg),url(https://i.ytimg.com/vi/${FIRST_VIDEO_ID}/hqdefault.jpg)`;
 tv.onclick=()=>{if(!tv.classList.contains("on")){tv.classList.add("on");tv.innerHTML=`<iframe src="https://www.youtube.com/embed/${FIRST_VIDEO_ID}?autoplay=1&rel=0" title="My first YouTube appearance, 2019" allow="autoplay; fullscreen" allowfullscreen></iframe>`}};
 tv.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();tv.click()}};
+const nav=document.getElementById("nav"),bg=document.getElementById("bg");
+const NL=[...document.querySelectorAll(".nl a[href^='#']")];
+bg.onclick=()=>{const o=nav.classList.toggle("open");bg.setAttribute("aria-expanded",o)};
+NL.forEach(a=>a.addEventListener("click",()=>nav.classList.remove("open")));
+const spy=()=>{let cur=null;NL.forEach(a=>{const t=document.querySelector(a.getAttribute("href"));if(t&&t.getBoundingClientRect().top<=130)cur=a});if(innerHeight+scrollY>=document.body.scrollHeight-4)cur=NL[NL.length-1];NL.forEach(a=>a.classList.toggle("act",a===cur))};
+addEventListener("scroll",spy,{passive:true});spy();
 const lb=document.getElementById("lb");
-document.addEventListener("click",e=>{if(e.target.matches(".gal img")){lb.firstElementChild.src=e.target.src;lb.style.display="flex"}else if(lb.contains(e.target)||e.target===lb){lb.style.display="none"}});
+document.addEventListener("click",e=>{if(e.target.matches(".gal img,.sp-img img")){lb.firstElementChild.src=e.target.src;lb.style.display="flex"}else if(lb.contains(e.target)||e.target===lb){lb.style.display="none"}});
 </script>
 </body>
 </html>
