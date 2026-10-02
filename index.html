@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"> 
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Abdurahaman Shemsedin | Embedded Systems & Hardware Engineer</title>
 <meta name="description" content="Portfolio of Abdurahaman Shemsedin: embedded systems, industrial control, edge AI and commercial arcade hardware built in Ethiopia.">
@@ -70,6 +70,9 @@ section{padding:44px 0}h2{font-size:1.5rem;margin:0 0 18px;border-left:4px solid
 .path li:first-child::before{border-color:#ff7b7b}
 .path b{display:block;color:#fff;font-size:1.15rem}
 @media(max-width:860px){.rwg{grid-template-columns:1fr}.path{grid-template-columns:1fr;gap:22px;margin-left:8px}.path::before{left:9px;right:auto;top:0;bottom:0;width:2px;height:auto}.path li{padding:0 0 0 40px}.path li::before{top:2px}}
+.pv{margin-top:12px;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#000}
+.pv video{display:block;width:100%;aspect-ratio:16/9;object-fit:contain;background:#000}
+.pv span{display:block;padding:7px 12px;font-size:.78rem;font-weight:600;color:var(--mut);background:var(--card)}
 footer{padding:48px 0 32px;border-top:1px solid var(--line);color:var(--mut)}
 .fgal{grid-template-columns:repeat(5,1fr);gap:10px;margin:0 0 36px}
 .fgal img,.fgal .ph{aspect-ratio:1}
@@ -182,7 +185,7 @@ const PROJECTS = [
   i:["arcade-1.jpg","arcade-2.jpg","arcade-3.jpg"]},
  {t:"Dynamo Education", s:"Founder, 2019 to present", d:"Afan Oromo learning platform for Grades 7 to 12 with a Moodle LMS, mobile app, 3,000+ hours of lessons and a professional recording studio.",
   b:["200+ daily app users","20,000+ youth and children trained in STEM and programming"], i:["dynamo-1.jpg","dynamo-2.jpg"]},
- {t:"Solar Autonomous Coffee Farm Tractor", s:"BSc final project, 2019", d:"Smart solar-powered autonomous tractor for coffee farms. Institute Project of the Year and Green Innovation and Agri-Tech Slam winner.", b:[], i:["tractor-1.jpg","tractor-2.jpg"]},
+ {t:"Solar Autonomous Coffee Farm Tractor", s:"BSc final project, 2019", d:"Smart solar-powered autonomous tractor for coffee farms. Institute Project of the Year and Green Innovation and Agri-Tech Slam winner.", b:[], i:[], v:"videos/Tractor_Dynamo.mp4"},
  {t:"Interpretable Amharic Hadith Classifier", s:"MSc research, 2024", d:"CNN-BiLSTM with SHAP explainability on 16,654 annotated texts and 12 authenticity grades, reaching 89% accuracy. In the final stage of publication in Nature journal.", b:[], i:[]},
  {t:"Technology Transfer Projects", s:"Jimma University, 2016 to 2017", d:"", b:["Amharic and Afan Oromo LED-matrix smart teaching device with speech recognition for kindergarten","Braille keyboard for Amharic with a 300+ word voice navigation dataset","Low-cost digital advertising board with Amharic fonts and animations"], i:["tt-1.jpg","tt-2.jpg"]},
  {t:"Guided 80+ Student Hardware Projects", s:"Dynamo consultancy", d:"Award-winning builds include:", b:["Digital spirometer to Ethiopian standards","Dialysis machine","Computer-vision pesticide robot","Amharic voice-synthesis book reader for the blind","Amharic sign-language gloves","Urine-based cervical cancer detector","Eye-tracking driver sleep detector","VR simulator lab, automated wheelchair, driving simulator"], i:["consult-1.jpg","consult-2.jpg"]}
@@ -194,7 +197,7 @@ const GALLERY = Array.from({length:10},(_,i)=>`gallery-${i+1}.jpg`);
 const SOCIAL = {facebook:"", youtube:"", tiktok:"https://www.tiktok.com/@dynamo.gaming.machines", linkedin:""};
 /* ====================== */
 const gal=(arr)=>arr.map(f=>`<img src="images/${f}" alt="" loading="lazy" onerror="this.outerHTML='<div class=ph>Add images/${f}</div>'">`).join("");
-document.getElementById("projects").innerHTML=PROJECTS.map(p=>`<div class="card"><h3>${p.t}</h3><small>${p.s}</small>${p.d?`<p>${p.d}</p>`:""}${p.b.length?`<ul>${p.b.map(x=>`<li>${x}</li>`).join("")}</ul>`:""}${p.i.length?`<div class="gal">${gal(p.i)}</div>`:""}</div>`).join("");
+document.getElementById("projects").innerHTML=PROJECTS.map(p=>`<div class="card"><h3>${p.t}</h3><small>${p.s}</small>${p.d?`<p>${p.d}</p>`:""}${p.b.length?`<ul>${p.b.map(x=>`<li>${x}</li>`).join("")}</ul>`:""}${p.i.length?`<div class="gal">${gal(p.i)}</div>`:""}${p.v?`<div class="pv"><video src="${p.v}#t=0.1" controls playsinline preload="metadata"></video><span>Autonomous tractor in action</span></div>`:""}</div>`).join("");
 document.getElementById("awards").innerHTML=gal(AWARD_IMAGES);
 document.getElementById("vid").innerHTML=YOUTUBE_ID?`<iframe src="https://www.youtube.com/embed/${YOUTUBE_ID}" title="Video" allowfullscreen loading="lazy"></iframe>`:`<div>Set YOUTUBE_ID in index.html to show your video here.</div>`;
 const ttId=(TIKTOK_URL.match(/\/video\/(\d+)/)||[])[1];
