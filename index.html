@@ -35,6 +35,16 @@ section{padding:44px 0}h2{font-size:1.5rem;margin:0 0 18px;border-left:4px solid
 .vid iframe,.vid div{position:absolute;inset:0;width:100%;height:100%;border:0}
 .vid div{display:flex;align-items:center;justify-content:center;color:#9fb0cc;text-align:center;padding:20px}
 .tl li{margin:8px 0}.tl b{color:var(--acc)}
+.media{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:start}
+.lbl{display:block;margin:0 0 10px;font-size:.75rem;font-weight:700;letter-spacing:.1em;color:var(--acc)}
+.info{margin-top:18px}.info h3{margin:0 0 6px;font-size:1.1rem}
+.pcol{width:100%;max-width:340px;justify-self:center}
+.phone{background:#0b0f1a;border-radius:38px;padding:10px;border:1px solid var(--line);box-shadow:0 18px 40px rgba(10,20,45,.28)}
+.screen{position:relative;height:720px;border-radius:28px;overflow:hidden;background:#000}
+.screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.screen .ph2{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:28px;color:#9fb0cc;font-size:.9rem}
+.ttl{display:block;text-align:center;margin-top:14px;font-weight:600;color:var(--acc);text-decoration:none}
+@media(max-width:860px){.media{grid-template-columns:1fr}.screen{height:680px}}
 footer{padding:36px 0;border-top:1px solid var(--line);color:var(--mut)}
 #lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);align-items:center;justify-content:center;z-index:9}#lb img{max-width:94%;max-height:92%;border-radius:8px}
 </style>
@@ -52,7 +62,19 @@ footer{padding:36px 0;border-top:1px solid var(--line);color:var(--mut)}
 </div></header>
 
 <section><div class="w"><h2>Watch</h2>
-<div class="vid" id="vid"></div>
+<div class="media">
+ <div>
+  <span class="lbl">YOUTUBE</span>
+  <div class="vid" id="vid"></div>
+  <div class="card info"><h3>Dynamo Gaming Machines</h3>
+  <p>Commercial arcade and amusement equipment designed and built in-house: racing cabinets, children's rides, custom control boards and gaming software, backed by our own metal and wood workshop. The clip alongside shows the products in action.</p></div>
+ </div>
+ <div class="pcol">
+  <span class="lbl">TIKTOK  |  PRODUCTS IN ACTION</span>
+  <div class="phone"><div class="screen" id="tt"></div></div>
+  <a class="ttl" id="ttl" href="#" target="_blank" rel="noopener" style="display:none">Watch on TikTok</a>
+ </div>
+</div>
 </div></section>
 
 <section><div class="w"><div class="stats">
@@ -89,7 +111,8 @@ footer{padding:36px 0;border-top:1px solid var(--line);color:var(--mut)}
 
 <script>
 /* ===== EDIT THESE ===== */
-const YOUTUBE_ID = "4M2IGzbBkiE";   // the part after v= in your YouTube link, e.g. "dQw4w9WgXcQ"
+const YOUTUBE_ID = "";   // the part after v= in your YouTube link, e.g. "dQw4w9WgXcQ"
+const TIKTOK_URL = "";   // full TikTok link, e.g. "https://www.tiktok.com/@yourname/video/7123456789012345678" (open short vm.tiktok.com links in a browser first and copy the full address)
 // Put photos in an "images" folder next to this file and list their file names below.
 const PROJECTS = [
  {t:"Dynamo Gaming Machines", s:"Founder, 2019 to present", d:"Commercial arcade and amusement equipment built end to end: control boards, firmware, and metal and wood fabrication.",
@@ -108,6 +131,9 @@ const gal=(arr)=>arr.map(f=>`<img src="images/${f}" alt="" loading="lazy" onerro
 document.getElementById("projects").innerHTML=PROJECTS.map(p=>`<div class="card"><h3>${p.t}</h3><small>${p.s}</small>${p.d?`<p>${p.d}</p>`:""}${p.b.length?`<ul>${p.b.map(x=>`<li>${x}</li>`).join("")}</ul>`:""}${p.i.length?`<div class="gal">${gal(p.i)}</div>`:""}</div>`).join("");
 document.getElementById("awards").innerHTML=gal(AWARD_IMAGES);
 document.getElementById("vid").innerHTML=YOUTUBE_ID?`<iframe src="https://www.youtube.com/embed/${YOUTUBE_ID}" title="Video" allowfullscreen loading="lazy"></iframe>`:`<div>Set YOUTUBE_ID in index.html to show your video here.</div>`;
+const ttId=(TIKTOK_URL.match(/\/video\/(\d+)/)||[])[1];
+document.getElementById("tt").innerHTML=ttId?`<iframe src="https://www.tiktok.com/embed/v2/${ttId}" title="TikTok video" allow="fullscreen" allowfullscreen loading="lazy"></iframe>`:`<div class="ph2">Paste your TikTok video link into TIKTOK_URL in index.html to show it here.</div>`;
+if(ttId){const a=document.getElementById("ttl");a.href=TIKTOK_URL;a.style.display="block"}
 const lb=document.getElementById("lb");
 document.addEventListener("click",e=>{if(e.target.matches(".gal img")){lb.firstElementChild.src=e.target.src;lb.style.display="flex"}else if(lb.contains(e.target)||e.target===lb){lb.style.display="none"}});
 </script>
