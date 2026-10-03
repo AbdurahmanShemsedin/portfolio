@@ -247,7 +247,7 @@ const AWARD_IMAGES = ["award-1.jpg","award-2.jpg","award-3.png"];
 // Footer gallery: 10 photos named gallery-1.jpg ... gallery-10.jpg in the "images" folder (or list your own file names).
 const GALLERY = Array.from({length:10},(_,i)=>`gallery-${i+1}.jpg`);
 // Social links: paste your full page addresses. Icons with an empty link stay dimmed and are not clickable.
-const SOCIAL = {facebook:"", youtube:"", tiktok:"https://www.tiktok.com/@dynamo.gaming.machines", linkedin:""};
+const SOCIAL = {facebook:"https://m.facebook.com/dynamoTechnolgies/", youtube:"https://www.youtube.com/@-dynamoEdTech", tiktok:"https://www.tiktok.com/@dynamo.gaming.machines", linkedin:"https://linkedin.com/in/abdurahman-shemsedin-63423319a"};
 /* ====================== */
 const gal=(arr)=>arr.map(f=>`<img src="images/${f}" alt="" loading="lazy" onerror="this.outerHTML='<div class=ph>Add images/${f}</div>'">`).join("");
 document.getElementById("projects").innerHTML=PROJECTS.map(p=>`<div class="card"><h3>${p.t}</h3><small>${p.s}</small>${p.d?`<p>${p.d}</p>`:""}${p.b.length?`<ul>${p.b.map(x=>`<li>${x}</li>`).join("")}</ul>`:""}${p.i.length?`<div class="gal">${gal(p.i)}</div>`:""}${p.v?`<div class="pv"><video src="${p.v}#t=0.1" controls playsinline preload="metadata"></video><span>Autonomous tractor in action</span></div>`:""}${p.y?`<div class="pv"><iframe src="https://www.youtube.com/embed/${p.y}" title="${p.t}" loading="lazy" allowfullscreen></iframe><span>${p.c||"Project video"}</span></div>`:""}</div>`).join("");
